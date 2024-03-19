@@ -1,0 +1,38 @@
+.list {
+    list-style: none;
+}
+
+.container{
+    position: sticky;
+    top: 40px;
+}
+
+.cat {
+    display: flex;
+    flex-flow: column;
+}
+
+.cat{
+    color: var(--textSoft);
+    font-weight: bold;
+    font-size: 15px;
+    margin: 10px 0px;
+}
+
+.logout {
+    display: flex;
+    gap:1.2em;
+    background-color: #253452;
+    padding: 1em;
+    border: none;
+    width:100%;
+    border-radius: 8px;
+    color: aliceblue;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.logout:hover {
+    background-color: #2d3d5c;
+}

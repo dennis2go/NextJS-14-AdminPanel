@@ -1,0 +1,22 @@
+.container {
+    display:flex ;
+    flex-flow: row nowrap;
+}
+
+.sidebar{
+    flex: 1;
+    padding:20px;
+    background-color: #253452;
+}
+
+.content{
+    flex: 4;
+    padding:20px;
+}
+
+.cardDiv {
+    display:flex ;
+    flex-flow: row nowrap;
+    gap:1em;
+    margin-top: 1em;
+}

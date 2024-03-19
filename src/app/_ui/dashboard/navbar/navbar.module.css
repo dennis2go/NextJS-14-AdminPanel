@@ -1,0 +1,24 @@
+.container {
+    background-color: #253452;
+    display: flex;
+    flex-flow: row;
+    padding: 14px;
+    padding-left: 26px;
+    padding-right: 40px;
+    border-radius: 8px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input{
+    border-radius: 6px;
+    height:2.2em;
+    width: 16em;
+    background-color: #324467;
+    padding:10px;
+    /* border:none ; */
+}
+
+.input::placeholder{
+    color: aliceblue;
+}
