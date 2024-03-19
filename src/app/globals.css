@@ -12,6 +12,6 @@
 }
 
 body {
-    background-color: var(--bg);
+    background-color: var(--bgSoft);
     color: var(--text);
   }

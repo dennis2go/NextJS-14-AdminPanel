@@ -11,11 +11,13 @@
 }
 
 .input{
-    border-radius: 6px;
-    height:2.2em;
+    height:2.4em;
     width: 16em;
     background-color: #324467;
     padding:10px;
+    border: none;
+    border-radius: 10px;
+    width: max-content;
     /* border:none ; */
 }
 
