@@ -45,7 +45,7 @@ export default function ProductsPage() {
                 <td className={styles.td}>15</td>
                 <td>
                 <div className={styles.buttons}>
-                  <Link href={`/dashboard/users/test`}>
+                  <Link href={`/dashboard/products/test`}>
                     <button className={`${styles.button} ${styles.view}`}>
                       View
                     </button>

@@ -4,8 +4,11 @@ import styles from "../../_ui/dashboard/users/user.module.css"
 import Image from "next/image";
 import imag from "../../../../public/User-avatar.svg.png"
 import Pagination from "../../_ui/dashboard/pagination/pagination"
+import {fetchUsers} from "../../lib/data"
 
-export default function UsersPage() {
+export default async function UsersPage() {
+    const users = await fetchUsers();
+    console.log(users);
     return (
       <div className={styles.container}>
         <div className={styles.top}>
