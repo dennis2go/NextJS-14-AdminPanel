@@ -27,7 +27,7 @@ export default function UsersPage() {
         </thead>
         <tbody>
             <tr>
-                <td>
+                <td className={styles.td}>
                 <div className={styles.user}>
                   <Image
                     src={imag}
@@ -39,13 +39,13 @@ export default function UsersPage() {
                   John Doe
                 </div>
                 </td>
-                <td>JoinRight.doe@web.de</td>
-                <td>12. Oktober</td>
-                <td>no Admin</td>
-                <td>Active</td>
+                <td className={styles.td}>JoinRight.doe@web.de</td>
+                <td className={styles.td}>12. Oktober</td>
+                <td className={styles.td}>no Admin</td>
+                <td className={styles.td}>Active</td>
                 <td>
                 <div className={styles.buttons}>
-                  <Link href={`/dashboard/users`}>
+                  <Link href={`/dashboard/users/test`}>
                     <button className={`${styles.button} ${styles.view}`}>
                       View
                     </button>
