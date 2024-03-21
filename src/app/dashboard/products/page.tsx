@@ -4,8 +4,13 @@ import styles from "../../_ui/dashboard/products/products.module.css"
 import Image from "next/image";
 import imag from "../../../../public/User-avatar.svg.png"
 import Pagination from "../../_ui/dashboard/pagination/pagination"
+import {fetchProducts} from "../../lib/data"
+import {productType} from "../../lib/types"
 
-export default function ProductsPage() {
+export default async function ProductsPage({ searchParams }:any) {
+    const q = searchParams?.q || "";
+    const products: productType[] = await fetchProducts(q);
+    console.log(products);
     return (
         <div className={styles.container}>
         <div className={styles.top}>
@@ -26,7 +31,8 @@ export default function ProductsPage() {
             </tr>
         </thead>
         <tbody>
-            <tr>
+        {products.map((product) =>(
+            <tr key={product.id}>
                 <td className={styles.td}>
                 <div className={styles.user}>
                   <Image
@@ -36,13 +42,13 @@ export default function ProductsPage() {
                     height={40}
                     className={styles.userImage}
                   />
-                  Iphone
+                  {product.title}
                 </div>
                 </td>
-                <td className={styles.td}>Iphone 14s Plus</td>
+                <td className={styles.td}> {product.desc}</td>
                 <td className={styles.td}>12.Oktober</td>
-                <td className={styles.td}>1200</td>
-                <td className={styles.td}>15</td>
+                <td className={styles.td}> {product.price}</td>
+                <td className={styles.td}> {product.stock}</td>
                 <td>
                 <div className={styles.buttons}>
                   <Link href={`/dashboard/products/test`}>
@@ -59,6 +65,7 @@ export default function ProductsPage() {
                 </div>
               </td>
             </tr>
+             ))}
         </tbody>
         </table>
         <Pagination count={2} />

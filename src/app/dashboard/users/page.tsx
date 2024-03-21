@@ -10,7 +10,6 @@ import {userType} from "../../lib/types"
 export default async function UsersPage({ searchParams }:any) {
     const q = searchParams?.q || "";
     const users: userType[] = await fetchUsers(q);
-    console.log(users);
     return (
       <div className={styles.container}>
         <div className={styles.top}>
