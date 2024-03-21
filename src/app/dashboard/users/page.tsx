@@ -5,9 +5,11 @@ import Image from "next/image";
 import imag from "../../../../public/User-avatar.svg.png"
 import Pagination from "../../_ui/dashboard/pagination/pagination"
 import {fetchUsers} from "../../lib/data"
+import {userType} from "../../lib/types"
 
-export default async function UsersPage() {
-    const users = await fetchUsers();
+export default async function UsersPage({ searchParams }:any) {
+    const q = searchParams?.q || "";
+    const users: userType[] = await fetchUsers(q);
     console.log(users);
     return (
       <div className={styles.container}>
@@ -29,7 +31,8 @@ export default async function UsersPage() {
             </tr>
         </thead>
         <tbody>
-            <tr>
+        {users.map((user) =>(
+            <tr key={user.id}>
                 <td className={styles.td}>
                 <div className={styles.user}>
                   <Image
@@ -39,13 +42,13 @@ export default async function UsersPage() {
                     height={40}
                     className={styles.userImage}
                   />
-                  John Doe
+                  {user.username}
                 </div>
                 </td>
-                <td className={styles.td}>JoinRight.doe@web.de</td>
+                <td className={styles.td}>{user.email}</td>
                 <td className={styles.td}>12. Oktober</td>
-                <td className={styles.td}>no Admin</td>
-                <td className={styles.td}>Active</td>
+                <td className={styles.td}>{user.isAdmin ? "Admin": "User"}</td>
+                <td className={styles.td}>{user.isActive? "Active": "not Active"}</td>
                 <td>
                 <div className={styles.buttons}>
                   <Link href={`/dashboard/users/test`}>
@@ -62,6 +65,7 @@ export default async function UsersPage() {
                 </div>
               </td>
             </tr>
+        ))}
         </tbody>
         </table>
         <Pagination count={2} />
