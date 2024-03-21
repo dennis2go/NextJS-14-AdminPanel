@@ -6,6 +6,7 @@ import imag from "../../../../public/User-avatar.svg.png"
 import Pagination from "../../_ui/dashboard/pagination/pagination"
 import {fetchProducts} from "../../lib/data"
 import {productType} from "../../lib/types"
+import { deleteProduct } from "@/app/lib/action";
 
 export default async function ProductsPage({ searchParams }:any) {
     const q = searchParams?.q || "";
@@ -56,8 +57,8 @@ export default async function ProductsPage({ searchParams }:any) {
                       View
                     </button>
                   </Link>
-                  <form>
-                    <input type="hidden" name="id"/>
+                  <form action={deleteProduct} >
+                    <input type="hidden" name="id" value={product.id}/>
                     <button className={`${styles.button} ${styles.delete}`}>
                       Delete
                     </button>

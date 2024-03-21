@@ -6,6 +6,7 @@ import imag from "../../../../public/User-avatar.svg.png"
 import Pagination from "../../_ui/dashboard/pagination/pagination"
 import {fetchUsers} from "../../lib/data"
 import {userType} from "../../lib/types"
+import { deleteUser } from "@/app/lib/action";
 
 export default async function UsersPage({ searchParams }:any) {
     const q = searchParams?.q || "";
@@ -55,8 +56,8 @@ export default async function UsersPage({ searchParams }:any) {
                       View
                     </button>
                   </Link>
-                  <form>
-                    <input type="hidden" name="id"/>
+                  <form action={deleteUser}>
+                    <input type="hidden" name="id" value={(user.id)} />
                     <button className={`${styles.button} ${styles.delete}`}>
                       Delete
                     </button>

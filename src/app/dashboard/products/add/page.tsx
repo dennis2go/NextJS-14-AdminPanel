@@ -1,8 +1,11 @@
+"use server"
 import styles from "../../../_ui/dashboard/products/addProduct/addProduct.module.css"
-export default function AddProduct() {
+import {addProduct} from"../../../lib/action"
+
+export default async function AddProduct() {
     return (
         <div className={styles.container}>
-          <form className={styles.form}>
+          <form action={addProduct} className={styles.form}>
             <input type="text" placeholder="title" name="title" required />
             <select name="cat" id="cat">
               <option value="general">Choose a Category</option>
