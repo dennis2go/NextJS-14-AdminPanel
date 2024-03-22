@@ -1,9 +1,13 @@
 import styles from "../../../_ui/dashboard/users/singleUser/singleUser.module.css";
 import Image from "next/image";
+import { updateUser } from "@/app/lib/action";
+import { userType } from "@/app/lib/types";
+import { fetchUserById } from "@/app/lib/data";
+
 
 export default async function SingleUserPage({params}:any) {
     const { id } = params;
-    const user = {id:2, username:"",img:"",email:"",phone:"",address:"",isAdmin:true, isActive:true};
+    let user:userType = await fetchUserById(id);
   
     return (
       <div className={styles.container}>
@@ -14,7 +18,7 @@ export default async function SingleUserPage({params}:any) {
           {user.username}
         </div>
         <div className={styles.formContainer}>
-          <form className={styles.form}>
+          <form action = {updateUser} className={styles.form}>
             <input type="hidden" name="id" value={user.id}/>
             <label>Username</label>
             <input type="text" name="username" placeholder={user.username} />
@@ -36,7 +40,7 @@ export default async function SingleUserPage({params}:any) {
               <option value={"true"} selected={user.isActive}>Yes</option>
               <option value={"false"} selected={!user.isActive}>No</option>
             </select>
-            <button>Update</button>
+            <button type="submit">Update</button>
           </form>
         </div>
       </div>

@@ -52,7 +52,7 @@ export default async function ProductsPage({ searchParams }:any) {
                 <td className={styles.td}> {product.stock}</td>
                 <td>
                 <div className={styles.buttons}>
-                  <Link href={`/dashboard/products/test`}>
+                  <Link href={`/dashboard/products/${product.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>
                       View
                     </button>

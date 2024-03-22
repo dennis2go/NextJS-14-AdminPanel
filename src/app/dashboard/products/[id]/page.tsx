@@ -1,9 +1,11 @@
+import { updateProduct } from "@/app/lib/action";
 import styles from "../../../_ui/dashboard/products/singleProduct/singleProduct.module.css";
 import Image from "next/image";
+import { fetchProductById } from "@/app/lib/data";
 
 export default async function SingleProductPage({params}:any) {
     const { id } = params;
-    const product = {title:"",id:"",price:"",stock:"",color:"",desc:"",size:""};
+    const product = await fetchProductById(id);
     return (
         <div className={styles.container}>
           <div className={styles.infoContainer}>
@@ -13,7 +15,7 @@ export default async function SingleProductPage({params}:any) {
             {product.title}
           </div>
           <div className={styles.formContainer}>
-            <form className={styles.form}>
+            <form action = {updateProduct} className={styles.form}>
               <input type="hidden" name="id" value={product.id} />
               <label>Title</label>
               <input type="text" name="title" placeholder={product.title} />
@@ -45,7 +47,7 @@ export default async function SingleProductPage({params}:any) {
                 rows={6}
                 placeholder={product.desc}
               ></textarea>
-              <button>Update</button>
+              <button type="submit">Update</button>
             </form>
           </div>
         </div>
