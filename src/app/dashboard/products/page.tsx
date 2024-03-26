@@ -11,7 +11,6 @@ import { deleteProduct } from "@/app/lib/action";
 export default async function ProductsPage({ searchParams }:any) {
     const q = searchParams?.q || "";
     const products: productType[] = await fetchProducts(q);
-    console.log(products);
     return (
         <div className={styles.container}>
         <div className={styles.top}>

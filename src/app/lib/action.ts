@@ -4,7 +4,7 @@ import {User, Product} from "./models"
 import { connectToDB } from "./utils";
 import { redirect } from "next/navigation";
 import { userType } from "./types";
-import { signIn, signOut } from "../auth";
+import { signIn, signOut, auth } from "../auth";
 
 export const addUser = async (formData:any) => {
     "use server"
@@ -126,17 +126,10 @@ export const deleteProduct = async (formData:any) => {
         throw new Error(err);
     }
     revalidatePath("/dashboard/products");
-} 
-export const authenticate = async (formData:any) => {
-    "use server"
-    const { username, password} = Object.fromEntries(formData);
-  
-    try {
-      await signOut();
-    } catch (err:any) {
-      if (err.message.includes("CredentialsSignin")) {
-        return "Wrong Credentials";
-      }
-      throw err;
-    }
+}
+
+export const login = async (prevState:any, formData:any) => {
+    const { username, password } = Object.fromEntries(formData);
+    const user = await signIn("credentials", { username, password });
+    // await signOut();
 };

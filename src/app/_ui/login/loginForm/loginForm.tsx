@@ -1,16 +1,15 @@
 "use client";
 
 // import { authenticate } from "@/app/lib/actions";
-import { authenticate } from "../../../lib/action";
+import { login } from "../../../lib/action";
 import styles from "./loginForm.module.css";
 import { useFormState } from "react-dom";
 
 const LoginForm = () => {
-//   const [state, formAction] = useFormState(authenticate, undefined);
+    const [state, formAction] = useFormState(login, undefined);
 
   return (
-    <form action={authenticate} className={styles.form}>
-      <h1>Login</h1>
+    <form className={styles.form} action={formAction}>
       <input type="text" placeholder="username" name="username" />
       <input type="password" placeholder="password" name="password" />
       <button>Login</button>
