@@ -5,6 +5,7 @@ import Credentials from "next-auth/providers/credentials";
 import { connectToDB } from "./lib/utils";
 import { User } from "./lib/models";
 import { userType } from "./lib/types";
+import { redirect } from "next/navigation";
 
 // const login = async (credentials: any) => {
 //     try {
@@ -28,6 +29,7 @@ import { userType } from "./lib/types";
 
   async function getUser(credentials: any): Promise<any> {
     try {
+        connectToDB();
         const user = await User.findOne({ username: credentials.username });
         return user
     } catch (error) {
@@ -43,14 +45,17 @@ import { userType } from "./lib/types";
             async authorize(credentials) {
             try {
                 const user = await getUser(credentials);
-                if(credentials.password == user.password) {
-                    return user;
-                }
-                else{
-                    throw new Error("invalid Credentials");
+                console.log(user);
+                if(user) {
+                    if(credentials.password == user.password) {
+                        return user;
+                    }
+                    else{
+                        throw new Error("hier oben der fehler");
+                    }
                 }
             } catch (err) {
-                throw new Error("invalid Credentials");
+                throw new Error("hier fehler");
             }
         },
       }),
